@@ -1,0 +1,77 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7fc96; /* Light yellow */
+}
+
+header {
+    background-color: #ff6060; /* Red */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+.food-item {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.food-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.2s ease-in-out;
+}
+
+.food-item:hover img {
+    transform: scale(1.1);
+}
+
+.food-item h3 {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+
+.food-item button {
+    background-color: #FFA500; /* Orange */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.food-item button:hover {
+    background-color: #E65A23; /* Dark orange */
+}
+
+.wavy-text {
+    color: red; /* Assuming the text color is red */
+    font-size: 40px; /* Adjust as needed */
+    font-family: cursive; /* Optional: Use a cursive font for better flow */
+    text-align: center;
+
+    /* Reference the SVG path using its ID */
+    text-anchor: start;
+    path: url(#wavyPath);
+}

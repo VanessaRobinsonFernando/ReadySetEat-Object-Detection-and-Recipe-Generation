@@ -1,0 +1,28 @@
+body {
+    font-family: sans-serif;
+}
+
+.recipe-container {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.ingredients, .instructions {
+    flex: 1;
+    padding: 1rem;
+}
+
+h1, h2 {
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
