@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eatology</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+</head>
+<body>
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-12 bg-custom">
+        <div class="text-center">
+          <img class="rounded-circle mt-5 mb-3" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="Profile Picture">
+          <h2 class="font-weight-bold">User</h2>
+          <p class="text-black-50 mb-3">User ID: {{ user_id }}</p>
+          <p class="text-black-50 mb-3">{{ email }}</p>
+        </div>
+        <div class="border-top pt-3">
+          <div class="form-group">
+            <label class="labels">Additional Details</label>
+            <input type="text" class="form-control" placeholder="Enter additional details">
+          </div>
+          <button class="btn btn-primary btn-block add-experience mt-3">
+            <i class="fa fa-plus"></i> Change Password
+          </button>
+        </div>
+      </div>
+      <div class="col-md-7 col-12 mt-4 mt-md-0">
+        <div class="p-3">
+          <h2 class="text-center mb-4">Profile Settings</h2>
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label class="labels">Name*</label>
+                <input type="text" class="form-control" id="first_name_input" placeholder="First name">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label class="labels">Surname*</label>
+                <input type="text" class="form-control" id="last_name_input" placeholder="Surname">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="labels">Mobile Number</label>
+            <input type="text" class="form-control" id="mobile_num_input" placeholder="Enter mobile number">
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div class="form-group">
+                <label class="labels">Country</label>
+                <select class="form-control" id="country_select">
+                  <option value="">Select your country</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group dropdown-checkbox">
+              <label class="labels">Dietary Preference</label>
+              <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="dietaryDropdown" onclick="toggleDropdown('dietaryMenu')">Select your dietary preference</button>
+              <div class="dropdown-checkbox-menu" id="dietaryMenu">
+                  <label><input type="checkbox" name="dietary_preference" value="vegetarian"> Vegetarian</label><br>
+                  <label><input type="checkbox" name="dietary_preference" value="vegan"> Vegan</label><br>
+                  <label><input type="checkbox" name="dietary_preference" value="pescatarian"> Pescatarian</label><br>
+                  <label><input type="checkbox" name="dietary_preference" value="No Sugar"> No Sugar</label><br>
+                  <label><input type="checkbox" name="dietary_preference" value="Low-Fat"> Low-Fat</label><br>
+                  <label><input type="checkbox" name="dietary_preference" value="High-Protein"> High-Protein</label>
+              </div>
+          </div>
+          <div class="form-group">
+            <label class="labels">Calorie Limit</label>
+            <input type="number" class="form-control" id="calorie_limit_input" placeholder="Enter calorie limit">
+          </div>
+          <div class="form-group dropdown-checkbox">
+            <label class="labels">Allergies</label>
+            <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="allergiesDropdown" onclick="toggleDropdown('allergiesMenu')">Select your allergies</button>
+            <div class="dropdown-checkbox-menu" id="allergiesMenu">
+                <label><input type="checkbox" name="allergies" value="celery"> Celery</label><br>
+                <label><input type="checkbox" name="allergies" value="crustacean"> Crustacean</label><br>
+                <label><input type="checkbox" name="allergies" value="dairy"> Dairy</label><br>
+                <label><input type="checkbox" name="allergies" value="egg"> Egg</label><br>
+                <label><input type="checkbox" name="allergies" value="fish"> Fish</label><br>
+                <label><input type="checkbox" name="allergies" value="gluten"> Gluten</label><br>
+                <label><input type="checkbox" name="allergies" value="lupine"> Lupine</label><br>
+                <label><input type="checkbox" name="allergies" value="mustard"> Mustard</label><br>
+                <label><input type="checkbox" name="allergies" value="peanut"> Peanut</label><br>
+                <label><input type="checkbox" name="allergies" value="sesame"> Sesame</label><br>
+                <label><input type="checkbox" name="allergies" value="shellfish"> Shellfish</label><br>
+                <label><input type="checkbox" name="allergies" value="soy"> Soy</label><br>
+                <label><input type="checkbox" name="allergies" value="treenut"> Treenut</label><br>
+                <label><input type="checkbox" name="allergies" value="wheat"> Wheat</label>
+            </div>
+        </div>
+          <button class="btn btn-primary btn-block profile-button mt-4" type="button">Save Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load countries
+    fetch('{{ url_for("static", filename="countries.json") }}')
+        .then(response => response.json())
+        .then(data => {
+            const countrySelect = document.getElementById('country_select');
+            data.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                countrySelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error loading countries:', error));
+
+    var saveProfileBtn = document.querySelector('.profile-button');
+    saveProfileBtn.addEventListener('click', function() {
+        var mobileNumInput = document.getElementById('mobile_num_input').value;
+        var countrySelect = document.getElementById('country_select');
+        var country = countrySelect.value || null;
+
+        var firstName = document.getElementById('first_name_input').value;
+        var lastName = document.getElementById('last_name_input').value;
+
+        // Check if first name and last name are filled
+        if (!firstName || !lastName) {
+            alert('Please fill REQUIRED* fields');
+            return;
+        }
+
+        var dietaryPreferences = [];
+        document.querySelectorAll('input[name="dietary_preference"]:checked').forEach(function(checkbox) {
+            dietaryPreferences.push(checkbox.value);
+        });
+
+        var allergies = [];
+        document.querySelectorAll('input[name="allergies"]:checked').forEach(function(checkbox) {
+            allergies.push(checkbox.value);
+        });
+
+        var calorieLimit = document.getElementById('calorie_limit_input').value;
+        calorieLimit = calorieLimit ? parseInt(calorieLimit) : null;
+
+        var userDetails = {
+            'user_id': {{ user_id }},
+            'first_name': document.getElementById('first_name_input').value,
+            'last_name': document.getElementById('last_name_input').value,
+            'mobile_num': mobileNumInput ? mobileNumInput : null,
+            'country': country,
+            'dietary_preference': dietaryPreferences.length ? dietaryPreferences.join(', ') : null,
+            'calorie_limit': calorieLimit,
+            'allergies': allergies.length ? allergies.join(', ') : null  // Add allergies data to userDetails
+        };
+
+        // Send an AJAX POST request to save user details
+        fetch('/save_user_details', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userDetails)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            alert('Profile saved successfully!');
+            window.location.href = '/index';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to save profile.');
+        });
+    });
+});
+</script>
+
+</body>
+</html>

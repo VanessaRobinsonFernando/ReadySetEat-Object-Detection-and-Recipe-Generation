@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadySetEat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1 class="heading">Ready.Set.Eat</h1>
+    </header>
+
+    <!-- container div -->
+    <div class="container">
+
+        <!-- upper button section to select
+             the login or signup form -->
+        <div class="slider"></div>
+        <div class="btn">
+            <button class="login">Login</button>
+            <button class="signup">Signup</button>
+        </div>
+
+        <!-- Form section that contains the
+             login and the signup form -->
+        <div class="form-section">
+
+            <!-- login form -->
+            <div class="login-box">
+                <input type="email"
+                        id="login-email"
+                        class="email ele"
+                        placeholder="youremail@email.com">
+                <input type="password"
+                        id="login-password"
+                        class="password ele"
+                        placeholder="password">
+                <button class="clkbtn login-btn" onclick="handleLogin()">Login</button>
+            </div>
+
+            <!-- signup form -->
+            <div class="signup-box">
+                <input type="email" id="signup-email" class="email ele" placeholder="youremail@email.com">
+                <input type="password" id="signup-password" class="password ele" placeholder="password">
+                <input type="password" id="signup-confirm-password" class="password ele" placeholder="Confirm password">
+                <button type="button" class="clkbtn signup-btn">Signup</button>
+            </div>
+
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

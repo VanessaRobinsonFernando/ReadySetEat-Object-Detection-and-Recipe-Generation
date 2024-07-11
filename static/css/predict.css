@@ -1,51 +1,59 @@
+/* General body styles */
 body {
     font-family: 'Garamond', serif;
     margin: 0;
     padding: 0;
-    background-color: #EAE2B7;
-    color: #333;
+    background-color: #F5F5F5; /* Light grey background for better readability */
+    color: #003049; /* Dark text for contrast */
     border-radius: 10px;
 }
 
+/* Subbody to maintain the consistent background color */
 .subbody {
-    background-color: #EAE2B7;
+    background-color: #F5F5F5; /* Consistent background color with body */
     border-radius: 10px;
     padding: 20px;
 }
 
+/* Container for main content */
 .container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* Header styling */
 header {
-    background-color: #FCBF49;
-    color: #D62828;
+    background-color: #FCBF49; /* Yellow for header to attract attention */
+    color: #003049; /* Dark blue text for contrast */
     padding: 20px 0;
     text-align: center;
     border-radius: 5px;
 }
 
+/* Header title styling */
 header h1 {
     font-size: 2.5em;
     margin-bottom: 15px;
 }
 
+/* Header paragraph styling */
 header p {
     font-size: 1.2em;
     line-height: 1.5;
     margin-bottom: 30px;
 }
 
+/* Container for buttons within the header */
 header .button-container {
     text-align: center;
     margin-top: 20px;
 }
 
+/* Recipe button styling */
 header .recipe-button {
-    background-color: #D62828;
-    color: #EAE2B7;
+    background-color: #D62828; /* Red button for action */
+    color: #EAE2B7; /* Light text for readability */
     padding: 15px 30px;
     border: none;
     border-radius: 20px;
@@ -53,18 +61,21 @@ header .recipe-button {
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    margin-top: 20px;
 }
 
+/* Recipe button hover effect */
 header .recipe-button:hover {
-    background-color: #F77F00 ;
-    color: #EAE2B7  ;
+    background-color: #F77F00; /* Orange hover effect for contrast */
 }
 
+/* Navbar styling */
 .navbar {
-    border-bottom: 2px solid #003049;
+    border-bottom: 2px solid #003049; /* Dark blue border for separation */
     padding: 20px 0;
 }
 
+/* Navbar list styling */
 nav ul {
     list-style: none;
     margin: 0;
@@ -72,38 +83,127 @@ nav ul {
     text-align: center;
 }
 
+/* Navbar list item styling */
 nav li {
     display: inline-block;
     margin: 0 20px;
 }
 
+/* Navbar links styling */
 nav li a {
-    color: #003049;
+    color: #003049; /* Dark blue links */
     font-size: 20px;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease-in-out;
 }
 
+/* Navbar links hover effect */
 nav li a:hover {
-    color: #D62828;
+    color: #D62828; /* Red hover effect for links */
 }
 
+/* Image display styling */
 .image-display {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
 }
 
+/* Ingredient list styling */
+.ingredient-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+/* Individual ingredient styling with 3D effect */
+.ingredient-list li {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #EAE2B7; /* Grey background for ingredients */
+    color: #003049; /* Dark blue text for contrast */
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* 3D box shadow effect */
+    background: linear-gradient(145deg, #f0e6c2, #e0d8a7); /* Slight gradient for 3D effect */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for the 3D appearance */
+.ingredient-list li:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* Ingredient name styling */
+.ingredient-name {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* Remove ingredient button styling */
+.remove-ingredient {
+    background-color: #D62828; /* Red remove button */
+    color: #EAE2B7; /* Light text for readability */
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Remove ingredient button hover effect */
+.remove-ingredient:hover {
+    background-color: #F77F00; /* Orange hover effect */
+}
+
+
+/* Footer styling */
 footer {
-    background-color: #003049;
-    color: #EAE2B7;
+    background-color: #003049; /* Dark blue footer */
+    color: #EAE2B7; /* Light text for contrast */
     padding: 20px;
     text-align: center;
     margin-top: 20px;
     border-radius: 5px;
 }
 
+/* Footer paragraph styling */
 footer p {
     margin: 0;
+}
+
+/* Form for editing ingredients styling */
+#edit-ingredients-form {
+    margin-top: 20px;
+}
+
+/* Input field for adding additional ingredients styling */
+#additional-ingredients {
+    width: 80%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px solid #D62828; /* Red border for input */
+    border-radius: 5px;
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+/* Input field for adding additional ingredients focus effect */
+#additional-ingredients:focus {
+    outline: none;
+    border-color: #F77F00; /* Orange focus color */
+}
+
+/* Label for additional ingredients input field styling */
+label[for="additional-ingredients"] {
+    font-size: 1.4em;
+    color: #333; /* Dark text for contrast */
+}
+
+/* Styling for "we spotted" text */
+.we-spotted {
+    font-size: 1.4em;
+    color: #333; /* Dark text for contrast */
 }

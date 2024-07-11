@@ -1,0 +1,96 @@
+body {
+  background-color: #003049;
+}
+
+h2 {
+  font-family: "Garamond", serif;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #BA68C8;
+}
+
+.profile-button,
+.add-experience {
+  background-color: #BA68C8;
+  border: none;
+}
+
+.profile-button:hover,
+.add-experience:hover {
+  background-color: #682773;
+}
+
+.labels {
+  font-size: 16px;
+  color: #003049 ;
+}
+
+.rounded-circle {
+  border: 5px solid #fff;
+}
+
+.btn-primary {
+  background-color: #F77F00;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #ec9e4c;
+}
+
+.add-experience {
+  color:#EAE2B7 ;
+
+}
+
+.add-experience:hover {
+  color: #fff;
+}
+
+.border-top {
+  border-top: 1px solid #682773;
+}
+
+.text-black-50 {
+  color: #fff;
+}
+
+.col-md-4.bg-custom {
+  background-color: #EAE2B7;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.p-3 {
+  background-color: #EAE2B7;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.dropdown-checkbox {
+  position: relative;
+}
+.dropdown-checkbox-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  z-index: 1;
+}
+.dropdown-checkbox-menu input[type="checkbox"] {
+  margin-right: 10px;
+}
+.dropdown-checkbox-menu.show {
+  display: block;
+}
+
+
+/* Media Query for Small Devices */
+@media (max-width: 767.98px) {
+  .col-md-4.bg-custom {
+    margin-bottom: 20px;
+  }
+}

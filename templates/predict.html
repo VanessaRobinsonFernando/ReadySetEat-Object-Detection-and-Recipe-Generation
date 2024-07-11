@@ -22,14 +22,24 @@
             <div class="container">
                 <img class="image-display" src="{{ url_for('serve_image', filename=predicted_image.split('/')[-1]) }}" alt="Ingredients">
                 <h1>Oh wow! You have quite a lot of ingredients</h1>
-                <p>We spotted
+                <p class="we-spotted">We spotted the following ingredients :</p>
+
+                <ul id="ingredient-list" class="ingredient-list">
                     {% for class_name in class_names_detected %}
-                        {{ class_name }}{% if not loop.last %}, {% endif %}
-                    {% endfor %}!
-                </p>
+                        <li>
+                            <span class="ingredient-name">{{ class_name }}</span>
+                            <button type="button" class="remove-ingredient">Remove</button>
+                        </li>
+                    {% endfor %}
+                </ul>
                 <div class="button-container">
-                    <form action="{{ url_for('generate_recipes') }}" method="post">
-                        <input type="hidden" name="ingredients" value="{{ ','.join(class_names_detected) }}">
+                    <form id="edit-ingredients-form" action="{{ url_for('open_nextjs') }}" method="post">
+                        <input type="hidden" name="ingredients" id="ingredients" value="{{ ','.join(class_names_detected) }}">
+
+                        <label for="additional-ingredients">Add more ingredients:</label><br>
+                        <input type="text" id="additional-ingredients" name="additional_ingredients" placeholder="Enter additional ingredients...">
+                        <button type="button" id="add-ingredient-button" class="recipe-button">Add Ingredient</button>
+
                         <button type="submit" class="recipe-button">Look at the recipes we have recommended for you</button>
                     </form>
                 </div>
@@ -42,17 +52,56 @@
         </footer>
     </div>
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/static/service-worker.js')
-                    .then(registration => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('Service Worker registration failed:', error);
-                    });
+        document.addEventListener('DOMContentLoaded', function() {
+            const ingredientList = document.getElementById('ingredient-list');
+
+            function removeIngredient(event) {
+                if (event.target.classList.contains('remove-ingredient')) {
+                    const listItem = event.target.parentElement;
+                    listItem.remove();
+                    updateIngredientsInput();
+                }
+            }
+
+            ingredientList.addEventListener('click', removeIngredient);
+
+            function updateIngredientsInput() {
+                const ingredients = Array.from(document.querySelectorAll('.ingredient-list li')).map(li => {
+                    const name = li.querySelector('.ingredient-name').textContent.trim();
+                    return name;
+                });
+                document.getElementById('ingredients').value = ingredients.join(',');
+            }
+
+            function addIngredient() {
+                const addIngredientInput = document.getElementById('additional-ingredients');
+                const newIngredient = addIngredientInput.value.trim();
+                if (newIngredient !== '') {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <span class="ingredient-name">${newIngredient}</span>
+                        <button type="button" class="remove-ingredient">Remove</button>
+                    `;
+                    ingredientList.appendChild(listItem);
+                    addIngredientInput.value = '';
+                    updateIngredientsInput();
+                }
+            }
+
+            const addIngredientInput = document.getElementById('additional-ingredients');
+            addIngredientInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    addIngredient();
+                }
             });
-        }
+
+            document.getElementById('add-ingredient-button').addEventListener('click', addIngredient);
+
+            document.getElementById('edit-ingredients-form').addEventListener('submit', function(event) {
+                updateIngredientsInput();
+            });
+        });
     </script>
 </body>
 </html>
